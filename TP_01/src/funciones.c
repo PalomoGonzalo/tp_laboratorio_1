@@ -54,12 +54,12 @@ void mensajeErrorDatos(int retorno)
 
 
 }
-float sumarNumeros(float a,float b)
+void sumarNumeros(float a,float b)
 {
 	float resultado;
 	resultado=a+b;
 	printf("la suma de %0.2f+%0.2f es = %0.2f \n",a,b,resultado);
-	return resultado;
+
 }
 float restarNumeros(float a,float b)
 {

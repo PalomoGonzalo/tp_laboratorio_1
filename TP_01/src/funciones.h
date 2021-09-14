@@ -8,7 +8,7 @@
 #ifndef FUNCIONES_H_
 #define FUNCIONES_H_
 int pedirNumeros(float* numeros,char* mensaje);
-float sumarNumeros(float a,float b);
+void sumarNumeros(float a,float b);
 float restarNumeros(float a,float b);
 int dividirNumeros (float a,float b,float* resultado);
 void mensajeDivison(int retorno,float resultado,float a,float b);
