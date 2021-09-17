@@ -54,21 +54,20 @@ void mensajeErrorDatos(int retorno)
 
 
 }
-void sumarNumeros(float a,float b)
+float sumarNumeros(float a,float b)
 {
 	float resultado;
 	resultado=a+b;
-	printf("la suma de %0.2f+%0.2f es = %0.2f \n",a,b,resultado);
+	return resultado;
 
 }
 float restarNumeros(float a,float b)
 {
 	float resultado;
 	resultado=a-b;
-	printf("la resta de %0.2f-%0.2f es = %0.2f \n",a,b,resultado);
 	return resultado;
 }
-int dividirNumeros (float a,float b,float* resultado)
+float dividirNumeros (float a,float b,float* resultado)
 {
 	int retorno;
 
@@ -101,25 +100,43 @@ float multiplicarNumeros(float a,float b)
 {
 	float resultado;
 	resultado=a*b;
-	printf("la multiplicacion de %0.2f*%0.2f es = %0.2f \n",a,b,resultado);
 	return resultado;
 }
-int factorialNumeros(int numero)
+float factorialNumeros(float numero)
 {
 	int factorial = 1;
-	while (numero < 0)
-	{
-		printf("no se puede sacar factor numero negativo, reingrese el numero\n");
-		scanf("%d", &numero);
-	}
-
 	for (int i = 1; i <= numero; i++)
 	{
 		factorial *= i;
 	}
-
-	printf("el factorial de %d es = %d\n",numero,factorial);
 	return factorial;
 
 }
+void mensajeFactorialNumero(float numero,int resultado)
+{
 
+	if (numero < 0)
+	{
+		printf("no se puede cargar factor numero negativo\n");
+	}
+	else
+		printf("el factorial de %0.2f es = %d\n",numero,resultado);
+
+
+}
+void mostrarTodosLosResultados(float a,float b,float suma, float resta, float division,int retornoDivision, float multiplicacion,float factorialUno, float factorialDos)
+{
+
+	printf("la suma de %0.2f+%0.2f es = %0.2f \n",a,b,suma);
+	printf("la resta de %0.2f-%0.2f e = %0.2f \n",a,b,resta);
+	mensajeDivison(retornoDivision,division,a,b);
+	printf("la multiplicacion de %0.2f*%0.2f es = %0.2f \n",a,b,multiplicacion);
+	mensajeFactorialNumero(a, factorialUno);
+	mensajeFactorialNumero(b, factorialDos);
+
+
+
+
+
+
+}

@@ -17,6 +17,11 @@ int main(void) {
 	setbuf(stdout, NULL);
 	float numeroUno=0;
 	float numeroDos=0;
+	float suma;
+	float resta;
+	float multiplicar;
+	int factorialUno;
+	int factorialDos;
 	char seguir = 's';
 	int opcion = 0;
 	int aux;
@@ -29,13 +34,9 @@ int main(void) {
 		auxDatos=verificarDatos(flagNumUno, flagNumDos);
 		printf("1- Ingresar 1er operando (A=x)\n");
 		printf("2- Ingresar 2do operando (B=y)\n");
-		printf("3- Calcular la suma (A+B)\n");
-		printf("4- Calcular la resta (A-B)\n");
-		printf("5- Calcular la division (A/B)\n");
-		printf("6- Calcular la multiplicacion (A*B)\n");
-		printf("7- Calcular el factorial (A!)\n");
-		printf("8- Calcular todas las operacione\n");
-		printf("9- Salir\n");
+		printf("3- Calcular todas las operaciones\n");
+		printf("4- Informar todos los resultados\n");
+		printf("5- Salir\n");
 		scanf("%d",&opcion);
 
 		switch (opcion)
@@ -50,86 +51,23 @@ int main(void) {
 			case 3:
 
 				if(auxDatos==1)
-				{
-					sumarNumeros(numeroUno,numeroDos);
-				}
-				else
-				{
-					mensajeErrorDatos(auxDatos);
-				}
+								{
+									suma=sumarNumeros(numeroUno,numeroDos);
+									resta=restarNumeros(numeroUno,numeroDos);
+									aux=dividirNumeros(numeroUno, numeroDos, &resultadoDivision);
+									multiplicar=multiplicarNumeros(numeroUno, numeroDos);
+									factorialUno=factorialNumeros(numeroUno);
+									factorialDos=factorialNumeros(numeroDos);
+								}
+								else
+								{
+									mensajeErrorDatos(auxDatos);
+								}
 
 				break;
-
 			case 4:
 
-				if(auxDatos==1)
-				{
-					restarNumeros(numeroUno,numeroDos);
-				}
-				else
-				{
-					mensajeErrorDatos(auxDatos);
-				}
-				break;
-
-			case 5:
-
-				if(auxDatos==1)
-				{
-					aux=dividirNumeros(numeroUno, numeroDos, &resultadoDivision);
-					mensajeDivison(aux,resultadoDivision,numeroUno,numeroDos);
-				}
-				else
-				{
-					mensajeErrorDatos(auxDatos);
-				}
-				break;
-
-			case 6:
-
-				if(auxDatos==1)
-				{
-					multiplicarNumeros(numeroUno, numeroDos);
-				}
-				else
-				{
-					mensajeErrorDatos(auxDatos);
-				}
-				break;
-
-			case 7:
-
-				if(auxDatos==1)
-				{
-					factorialNumeros(numeroUno);
-					factorialNumeros(numeroDos);
-				}
-				else
-				{
-					mensajeErrorDatos(auxDatos);
-				}
-
-				break;
-
-			case 8:
-
-				if(auxDatos==1)
-				{
-					sumarNumeros(numeroUno,numeroDos);
-					restarNumeros(numeroUno,numeroDos);
-					aux=dividirNumeros(numeroUno, numeroDos, &resultadoDivision);
-					mensajeDivison(aux,resultadoDivision,numeroUno,numeroDos);
-					multiplicarNumeros(numeroUno, numeroDos);
-					factorialNumeros(numeroUno);
-					factorialNumeros(numeroDos);
-				}
-				else
-				{
-					mensajeErrorDatos(auxDatos);
-				}
-				break;
-			case 9:
-				seguir='n';
+				mostrarTodosLosResultados(numeroUno,numeroDos,suma,resta,resultadoDivision,aux, multiplicar, factorialUno, factorialDos);
 				break;
 		}
 	}
