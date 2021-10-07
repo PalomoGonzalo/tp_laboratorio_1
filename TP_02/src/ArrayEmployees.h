@@ -9,6 +9,7 @@
 #define ARRAYEMPLOYEES_H_
 #define OCUPADO 0
 #define LIBRE 1
+#include "funciones.h"
 struct
 {
  int id;
@@ -29,10 +30,12 @@ struct
  */
 int initEmployees(Employee* list, int len);
 int dameUnIdNuevo(void);
+int addEmployee(Employee list[],int len);
 int employe_buscarLibre(Employee list[],int len);
 int disp_menuModificar(Employee list[],int len,int indice);
 int findEmployeeById(Employee* list, int len,int id);
 void mostrarStruct(Employee mostrar [],int len);
+char reemplazarTipo(int tipo,char *retorno);
 
 
 #endif /* ARRAYEMPLOYEES_H_ */

@@ -34,7 +34,7 @@ int employe_buscarLibre(Employee list[],int len)
 {
 	int i;
 	int indice=-1;
-	if(list!=NULL && len>0)
+	if(list!=NULL&& len>0)
 	{
 		for(i=0; i<len; i++)
 		{
@@ -52,10 +52,10 @@ int addEmployee(Employee list[],int len)
 {
 	int retorno=-1;
 	int indice;
-	if(list!=NULL && len>0)
+	if(list!=NULL&& len>0)
 	{
 		indice=employe_buscarLibre(list, len);
-		if(indice>0)
+		if(indice>=0)
 		{
 			list[indice].id=dameUnIdNuevo();
 			getString("ingrese el nombre del empleado \n", list[indice].name);
@@ -90,21 +90,42 @@ int findEmployeeById(Employee* list, int len,int id)
 	}
 	return retorno;
 }
+char reemplazarTipo(int tipo,char *retorno)
+{
+	char aux[20];
+
+	switch(tipo)
+	{
+	case 1:
+		strncpy(aux,"administracion",sizeof(aux));
+		break;
+	case 2:
+		strncpy(aux,"programacioon",sizeof(aux));
+		break;
+
+	}
+	strcpy(retorno,aux);
+	return *retorno;
+
+}
 void mostrarStruct(Employee mostrar [],int len)
 {
     int i;
+    char auxTipo[20];
     for(i=0; i<len; i++)
     {
+
         if(mostrar[i].isEmpty==OCUPADO)
         {
-            printf("Id:%d NOMBRE: %s PRECIO: %f DIRECCION: %s \n",mostrar[i].id,mostrar[i].name,mostrar[i].price,mostrar[i].addres);
+        	reemplazarTipo(mostrar[i].sector,auxTipo);
+            printf("Id:%d NOMBRE: %s APELLIDO: %s SALARIO: %f TIPO: %s  \n",mostrar[i].id,mostrar[i].name,mostrar[i].lastName,mostrar[i].salary,auxTipo);
 
         }
     }
 
 }
 
-int modificarEmployee (Employee* list,int len)
+/*int modificarEmployee (Employee* list,int len)
 {
 	int retorno=-1;
 	int indice;
@@ -124,8 +145,7 @@ int modificarEmployee (Employee* list,int len)
 	}
 
 
-
-}
+}*/
 
 int disp_menuModificar(Employee list[],int len,int indice)
 {

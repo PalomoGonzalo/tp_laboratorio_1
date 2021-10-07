@@ -20,11 +20,17 @@ int main(void) {
 	int opcion;
 	char seguir='s';
 
+	Employee listaEmployee[LEN_EMPLOYEES];
+	initEmployees(listaEmployee, LEN_EMPLOYEES);
+
 	do{
 		utn_getInt(&opcion, " 1-Dar de Alta\n 2-Modificar\n 3-Dar de baja\n 4-Salir\n", "error ingrese numeros validos", 1, 4, 4);
 		switch(opcion)
 		{
 		case 1:
+			addEmployee(listaEmployee, LEN_EMPLOYEES);
+			mostrarStruct(listaEmployee, LEN_EMPLOYEES);
+			printf("asdasd");
 			break;
 		case 2:
 
