@@ -288,14 +288,14 @@ int ordenarArraySegunCriterio(Employee list [], int len, int orden)
 		{
 			if (list[i].isEmpty == OCUPADO)
 			{
-				if (strcmp(list[i].lastName, list[i + 1].lastName) > 0)
+				if (stricmp(list[i].lastName, list[i + 1].lastName) > 0)
 				{
 					Aux = list[i];
 					list[i] = list[i + 1];
 					list[i + 1] = Aux;
 					reemplazarTipo(list[i].sector, auxTipo, len);
 					reemplazarTipo(list[i + 1].sector, auxTipoDos, len);
-					if (strcmp(auxTipo, auxTipoDos) == 0)
+					if (stricmp(auxTipo, auxTipoDos) == 0)
 					{
 						Aux = list[i];
 						list[i] = list[i + 1];
@@ -312,7 +312,7 @@ int ordenarArraySegunCriterio(Employee list [], int len, int orden)
 		{
 			if (list[i].isEmpty == OCUPADO)
 			{
-				if (strcmp(list[i].lastName, list[i + 1].lastName) < 0)
+				if (stricmp(list[i].lastName, list[i + 1].lastName) < 0)
 				{
 
 					Aux = list[i];
@@ -320,7 +320,7 @@ int ordenarArraySegunCriterio(Employee list [], int len, int orden)
 					list[i + 1] = Aux;
 					reemplazarTipo(list[i].sector, auxTipo, len);
 					reemplazarTipo(list[i + 1].sector, auxTipoDos, len);
-					if (strcmp(auxTipo, auxTipoDos) == 0)
+					if (stricmp(auxTipo, auxTipoDos) == 0)
 					{
 						Aux = list[i];
 						list[i] = list[i + 1];
