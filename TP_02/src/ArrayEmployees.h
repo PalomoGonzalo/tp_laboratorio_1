@@ -35,7 +35,15 @@ int employe_buscarLibre(Employee list[],int len);
 int disp_menuModificar(Employee list[],int len,int indice);
 int findEmployeeById(Employee* list, int len,int id);
 void mostrarStruct(Employee mostrar [],int len);
-char reemplazarTipo(int tipo,char *retorno);
-
-
+char reemplazarTipo(int tipo,char *retorno,int len);
+int modificarEmployee (Employee* list,int len);
+int struct_bajaMenu(Employee list[],int len,int indice);
+void mostrarUno(Employee mostrar[],int i);
+void transefrirDatos(Employee auxiliarListado [],Employee listado [],int len);
+int removeEmployee(Employee* list, int len);
+int ordenarArraySegunCriterio(Employee list[], int len,int orden);
+int printEmployees(Employee* list, int len);
+void mostrarStructQueSuperaPromedio(Employee mostrar [],int len);
+int empleadosQueSuperanElPromedio(Employee* list,int len);
+float informarSalarios(Employee* list,int len,float * promedio);
 #endif /* ARRAYEMPLOYEES_H_ */

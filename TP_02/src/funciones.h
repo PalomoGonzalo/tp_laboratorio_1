@@ -22,7 +22,7 @@ void imprimirIntArray(int arrayImprimir[],int len);
 int filtrarParArray(int arrayPar [],int len);
 int pedirFloatInt(int arrayFloat[],int len);
 int pedirFloatArray(float arrayFloat[],int len);
-int pedirMensajeParaOrdenerArrays();
+int pedirMensajeParaOrdenar();
 int ordenarArrayIntSegunCriterio(int arrayParaOrdenar[], int len);
 int utn_getInt(int* pResultado, char* mensaje, char* mensajeError, int minimo, int maximo, int reintentos);
 int esNumerico(char str[]);
@@ -36,6 +36,7 @@ char getEmail(char cadena[],char *retorno);
 int getFloat(char *mensaje,float* resultado);
 int esNumericoFlotante(char str[]);
 float utn_getFloat(float* pResultado, char* mensaje, char* mensajeError, int minimo, int maximo, int reintentos);
+int utn_getInt2(char* mensaje, char* mensajeError, int minimo, int maximo, int reintentos);
 
 //int getString(char cadena[],char *retorno[]);
 

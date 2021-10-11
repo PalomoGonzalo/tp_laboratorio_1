@@ -116,7 +116,7 @@ int ordenarArrayIntSegunCriterio(int arrayParaOrdenar[], int len) {
 	int criterioParaOrdenar;
 	int flagSwap;
 
-	criterioParaOrdenar = pedirMensajeParaOrdenerArrays();
+	criterioParaOrdenar = pedirMensajeParaOrdenar();
 
 	do
 	{
@@ -160,7 +160,7 @@ int ordenarArrayIntSegunCriterio(int arrayParaOrdenar[], int len) {
 	return contador;
 
 }
-int pedirMensajeParaOrdenerArrays()
+int pedirMensajeParaOrdenar()
 {
 	int retorno;
 	int opcion;
@@ -516,6 +516,46 @@ int utn_getInt(int* pResultado, char* mensaje, char* mensajeError, int minimo, i
         }
     }
     return retorno;
+}
+
+int utn_getInt2(char* mensaje, char* mensajeError, int minimo, int maximo, int reintentos){
+    int pResultado = 0;
+    int bufferInt;
+    int i;
+    char bufferCadenaAux[16];
+   // if(pResultado != NULL && mensaje != NULL && mensajeError != NULL && minimo <= maximo && reintentos >= 0)
+    {
+        for(i=0; i<=reintentos; i++)
+        {
+            printf("%s", mensaje);
+            fflush(stdin);
+            //if(scanf("%d", &bufferInt)==1)
+            if(myGets(bufferCadenaAux,sizeof(bufferCadenaAux))==0)
+            {
+
+                // lo valido, para ver si los simbolos ingresados son numericos
+                if(esNumerico(bufferCadenaAux)==1)
+                {
+                    // si son numericos, convierto la cadena a INT
+                    bufferInt = atoi(bufferCadenaAux);
+                    if(bufferInt >= minimo && bufferInt <= maximo){
+                        pResultado = bufferInt;
+                      //  retorno = 0;
+                        break;
+                    }else{
+                        printf("%s", mensajeError);
+                    }
+                }
+                else {
+                    printf("%s", mensajeError);
+                }
+            }
+            else {
+                printf("%s", mensajeError);
+            }
+        }
+    }
+    return pResultado;
 }
 
 float utn_getFloat(float* pResultado, char* mensaje, char* mensajeError, int minimo, int maximo, int reintentos){
