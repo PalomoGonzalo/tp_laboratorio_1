@@ -15,12 +15,12 @@ Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajad
 	Employee* auxEmployee;
 	auxEmployee=employee_new();
 
-	if(auxEmployee!=NULL)
+	if(auxEmployee!=NULL && idStr!=NULL && nombreStr !=NULL && horasTrabajadasStr!=NULL && sueldo!=NULL )
 	{
-		auxEmployee->horasTrabajadas=atoi(horasTrabajadasStr);
-		auxEmployee->id=atoi(idStr);
-		strncpy(auxEmployee->nombre,nombreStr,sizeof(auxEmployee->nombre));
-
+		employee_setIdTxt(auxEmployee, idStr);
+		employee_setNombre(auxEmployee, nombreStr);
+		employee_setHorasTrabajadas(auxEmployee, atoi(horasTrabajadasStr));
+		employee_setSueldo(auxEmployee, atoi(sueldo));
 	}
 
 	return auxEmployee;
@@ -79,7 +79,7 @@ int employee_setIdTxt(Employee* this, char* idTxt)
     return retorno;
 }
 
-int employee_getIdTxt(Employee* this, char idTxt)
+int employee_getIdTxt(Employee* this, char *idTxt)
 {
 	int retorno=-1;
 	if(this!=NULL && idTxt!=NULL)
@@ -160,12 +160,44 @@ int employee_setSueldo(Employee* this,int sueldo)
 	if(this!=NULL && sueldo>0)
 	{
 
-
+		retorno=1;
+		this->sueldo=sueldo;
 
 	}
-
+	return retorno;
 
 }
+
+
+int employee_getSueldo(Employee* this,int* sueldo)
+{
+	int retorno =-1;
+
+	if(this!=NULL && sueldo!=NULL)
+	{
+		retorno=1;
+		*sueldo=this->sueldo;
+
+	}
+	return retorno;
+
+}
+
+
+
+int employee_dameIdNuevo(void)
+{
+	static int contador=0;
+	contador++;
+	return contador;
+
+}
+
+
+
+
+
+
 
 
 

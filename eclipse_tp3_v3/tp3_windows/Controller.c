@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "LinkedList.h"
 #include "Employee.h"
+#include "parser.h"
 
 
 /** \brief Carga los datos de los empleados desde el archivo data.csv (modo texto).
@@ -13,7 +14,32 @@
  */
 int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 {
-    return 1;
+	int retorno=-1;
+
+	FILE* pFile=fopen(path,"r");
+
+	if(pFile!=NULL)
+	{
+		if(path!=NULL && pArrayListEmployee!=NULL)
+		{
+			if(parser_EmployeeFromText(pFile, pArrayListEmployee))
+			{
+				retorno=1;
+				printf("\nSe cargo con exito la lista\n");
+
+			}
+			else
+				printf("no se puedo cargar la lista\n");
+
+		}
+
+	}
+
+	fclose(pFile);
+
+
+
+    return retorno;
 }
 
 /** \brief Carga los datos de los empleados desde el archivo data.csv (modo binario).
@@ -25,7 +51,27 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 {
-    return 1;
+	int retorno=-1;
+
+	FILE * pFile=fopen(path,"r");
+
+	if(pFile!=NULL)
+	{
+		if(path!=NULL && pArrayListEmployee!=NULL)
+		{
+			if(parser_EmployeeFromBinary(pFile, pArrayListEmployee))
+			{
+				retorno=1;
+				printf("se cargo con exito la lista\n");
+
+			}
+			else
+				printf("no se puedo cargar la lista \n");
+
+		}
+	}
+	fclose(pFile);
+    return retorno;
 }
 
 /** \brief Alta de empleados
@@ -73,7 +119,24 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_ListEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+	Employee * pEaux;
+	int id;
+	char nombre[32];
+	int sueldo;
+	int horasTrabajads;
+
+	printf("id:\tnombre:\t      sueldo:\t horas trabajadas:\t");
+   for(int i=0; i<ll_len(pArrayListEmployee); i++)
+	{
+		pEaux = ll_get(pArrayListEmployee,i);
+		employee_getNombre(pEaux, nombre);
+		employee_getId(pEaux, &id);
+		employee_getSueldo(pEaux, &sueldo);
+		employee_getHorasTrabajadas(pEaux, &horasTrabajads);
+		printf("\n%d\t%8s\t%6d\t%10d\t",id,nombre,sueldo,horasTrabajads);
+	}
+
+   return 1;
 }
 
 /** \brief Ordenar empleados
@@ -109,6 +172,32 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
 {
-    return 1;
+    int retorno = -1;
+    FILE* pFile = NULL;
+    Employee * pEmployee = NULL;
+    if(path != NULL && pArrayListEmployee != NULL)
+    {
+        pFile = fopen(path, "wb");
+        if(pFile != NULL)
+        {
+            for(int i =0 ; i<ll_len(pArrayListEmployee) ; i++)
+            {
+                pEmployee = ll_get(pArrayListEmployee, i);
+                if(pEmployee != NULL)
+                    fwrite(pEmployee, sizeof(Employee), 1, pFile);
+            }
+            fclose(pFile);
+            printf("Guardado con exito\n");
+            retorno = 0;
+        }
+    }
+    return retorno;
 }
+
+
+
+
+
+
+
 
