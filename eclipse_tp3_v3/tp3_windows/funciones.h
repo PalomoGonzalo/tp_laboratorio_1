@@ -36,7 +36,7 @@ char getEmail(char cadena[],char *retorno);
 int getFloat(char *mensaje,float* resultado);
 int esNumericoFlotante(char str[]);
 float utn_getFloat(float* pResultado, char* mensaje, char* mensajeError, int minimo, int maximo, int reintentos);
-
+char getIntString(char cadena[],char *retorno);
 //int getString(char cadena[],char *retorno[]);
 
 #endif /* FUNCIONES_H_ */

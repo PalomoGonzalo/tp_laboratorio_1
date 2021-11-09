@@ -19,8 +19,8 @@ Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajad
 	{
 		employee_setIdTxt(auxEmployee, idStr);
 		employee_setNombre(auxEmployee, nombreStr);
-		employee_setHorasTrabajadas(auxEmployee, atoi(horasTrabajadasStr));
-		employee_setSueldo(auxEmployee, atoi(sueldo));
+		employee_setHorasTrabajadasTxt(auxEmployee,horasTrabajadasStr);
+		employee_setSueldoTxt(auxEmployee, sueldo);
 	}
 
 	return auxEmployee;
@@ -194,8 +194,30 @@ int employee_dameIdNuevo(void)
 }
 
 
+int employee_setSueldoTxt(Employee* this, char* idTxt)
+{
+    int retorno = -1;
+    if(this != NULL && idTxt!=NULL)
+        if(esNumerico(idTxt))
+        {
+        	retorno=1;
+           this->sueldo=atoi(idTxt);
+        }
+    return retorno;
+}
 
 
+int employee_setHorasTrabajadasTxt(Employee* this, char* idTxt)
+{
+    int retorno = -1;
+    if(this != NULL && idTxt!=NULL)
+        if(esNumerico(idTxt))
+        {
+        	retorno=1;
+           this->horasTrabajadas=atoi(idTxt);
+        }
+    return retorno;
+}
 
 
 

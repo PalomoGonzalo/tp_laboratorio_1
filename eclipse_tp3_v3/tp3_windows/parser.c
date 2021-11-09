@@ -57,6 +57,7 @@ return retorno;
  */
 int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 {
+	int retorno;
 
     Employee* pEaux;
 
@@ -68,6 +69,7 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
             if(fread(pEaux,sizeof(Employee),1,pFile)==1)
             {
                 ll_add(pArrayListEmployee,pEaux);
+                retorno=1;
             }
             else
             {
@@ -76,5 +78,5 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
             }
         }while( feof(pFile)==0 );
     }
-    return 1;
+    return retorno;
 }

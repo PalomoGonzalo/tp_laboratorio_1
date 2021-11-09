@@ -307,9 +307,27 @@ char getAlfaNumerico(char cadena[],char *retorno)
 	printf(cadena);
 	if (myGets(auxiliarChar, sizeof(auxiliarChar)) == 0)
 	{
-		while (!esSoloLetras(auxiliarChar))
+		while (!esNumerico(auxiliarChar))
 		{
 			printf("error ingrese solo alfaNumerico ");
+			myGets(auxiliarChar, sizeof(auxiliarChar));
+		}
+	}
+	strcpy(retorno, auxiliarChar);
+
+	return *retorno;
+
+}
+char getIntString(char cadena[],char *retorno)
+{
+
+	char auxiliarChar[500];
+	printf(cadena);
+	if (myGets(auxiliarChar, sizeof(auxiliarChar)) == 0)
+	{
+		while (!esNumerico(auxiliarChar))
+		{
+			printf("error ingrese solo numeros");
 			myGets(auxiliarChar, sizeof(auxiliarChar));
 		}
 	}

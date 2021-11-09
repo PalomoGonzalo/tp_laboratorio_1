@@ -26,4 +26,6 @@ int employee_getHorasTrabajadas(Employee* this,int* horasTrabajadas);
 int employee_setSueldo(Employee* this,int sueldo);
 int employee_getSueldo(Employee* this,int* sueldo);
 int employee_dameIdNuevo(void);
+int employee_setHorasTrabajadasTxt(Employee* this, char* idTxt);
+int employee_setSueldoTxt(Employee* this, char* idTxt);
 #endif // employee_H_INCLUDED
