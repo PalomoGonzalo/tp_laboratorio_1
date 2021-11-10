@@ -8,6 +8,9 @@
 static int myGets(char pResultado[], int len);
 #include "funciones.h"
 #include "LinkedList.h"
+#include<ctype.h>
+
+
 
 
 static int myGets(char pResultado[], int len)
@@ -27,6 +30,8 @@ static int myGets(char pResultado[], int len)
     }
     return retorno;
 }
+
+
 
 
 
@@ -536,6 +541,25 @@ int utn_getInt(int* pResultado, char* mensaje, char* mensajeError, int minimo, i
     }
     return retorno;
 }
+
+int validar_palabra(char palabra[])
+{
+
+	int i;
+	for(i=0; i<strlen(palabra);i++)
+	{
+		if(!(isalpha(palabra[i])))
+		{
+			return 0;
+		}
+
+	}
+
+	return 1;
+}
+
+
+
 
 float utn_getFloat(float* pResultado, char* mensaje, char* mensajeError, int minimo, int maximo, int reintentos){
     float retorno = -1;

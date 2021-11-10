@@ -25,6 +25,8 @@ int main()
 {
 	setbuf(stdout, NULL);
     int option = 0;
+    int banderaLoad=0;
+
 
     LinkedList* listaEmpleados = ll_newLinkedList();
     do{
@@ -39,14 +41,27 @@ int main()
          printf("8. Guardar los datos de los empleados en el archivo data.csv (modo texto).\n");
          printf("9. Guardar los datos de los empleados en el archivo data.csv (modo binario).\n");
          printf("10. Salir");
-    	utn_getInt(&option, "ingrese una opcion \n", "error reingre \n", 1, 8, 3);
+    	utn_getInt(&option, "\ningrese una opcion \n", "error reingre \n", 1, 11, 3);
         switch(option)
         {
             case 1:
-                controller_loadFromText("data.csv",listaEmpleados);
+            	if(banderaLoad==0)
+            	{
+            		controller_loadFromText("data.csv",listaEmpleados);
+            		banderaLoad=1;
+            	}
+            	else
+            		printf("ya hay datos cargados\n");
                 break;
             case 2:
-            	controller_loadFromBinary("binario.bin", listaEmpleados);
+            	if(banderaLoad==0)
+            	{
+            		controller_loadFromBinary("binario.bin", listaEmpleados);
+            		banderaLoad=1;
+            	}
+            	else
+            		printf("ya hay datos cargados\n");
+
             	break;
             case 3:
             	controller_addEmployee(listaEmpleados);
@@ -77,7 +92,10 @@ int main()
             	break;
             case 8:
             	if(ll_isEmpty(listaEmpleados)==0)
-
+            		controller_saveAsText("data.csv", listaEmpleados);
+            	else
+            		printf("no hay existe datos guardar \n");
+            	break;
 
             case 9:
             	if(ll_isEmpty(listaEmpleados)==0)
@@ -85,6 +103,10 @@ int main()
             	else
             		printf("no hay existe datos guardar \n");
             	break;
+            case 10:
+            	option=10;
+            	break;
+
         }
     }while(option != 10);
     return 0;

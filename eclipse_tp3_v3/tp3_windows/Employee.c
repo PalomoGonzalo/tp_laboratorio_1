@@ -12,20 +12,37 @@ Employee* employee_new()
 	return pEmployee;
 
 }
-Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr, char *sueldo,LinkedList* pArrayListEmployee)
+Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr, char *sueldo,LinkedList* pArrayListEmployee,int * flag)
 {
 	Employee* auxEmployee;
 	auxEmployee=employee_new();
+	*flag=1;
 	int idAux;
+
 
 	if(auxEmployee!=NULL && idStr!=NULL && nombreStr !=NULL && horasTrabajadasStr!=NULL && sueldo!=NULL )
 	{
 		idAux=controller_nextId(pArrayListEmployee);
 		sprintf(idStr,"%d",idAux);
-		employee_setIdTxt(auxEmployee, idStr);
-		employee_setNombre(auxEmployee, nombreStr);
-		employee_setHorasTrabajadasTxt(	auxEmployee,horasTrabajadasStr);
-		employee_setSueldoTxt(auxEmployee, sueldo);
+		if(employee_setIdTxt(auxEmployee, idStr)!=1)
+		{
+			*flag=0;
+		}
+		if(employee_setNombre(auxEmployee, nombreStr)!=1)
+		{
+			*flag=0;
+		}
+		if(employee_setHorasTrabajadasTxt(	auxEmployee,horasTrabajadasStr)!=1)
+		{
+			*flag=0;
+		}
+		if(employee_setSueldoTxt(auxEmployee, sueldo)!=1)
+		{
+			*flag=0;
+		}
+
+
+
 	}
 
 	return auxEmployee;
@@ -105,7 +122,7 @@ int employee_setNombre(Employee* this,char* nombre)
 	int retorno=-1;
 	if(this!=NULL && nombre!=NULL)
 	{
-		if(esSoloLetras(nombre))
+		if(validar_palabra(nombre))
 		{
 			retorno=1;
 			strncpy(this->nombre,nombre,NOMBRE_LEN);
