@@ -1,5 +1,6 @@
 #ifndef employee_H_INCLUDED
 #define employee_H_INCLUDED
+#include "LinkedList.h"
 typedef struct
 {
     int id;
@@ -9,7 +10,7 @@ typedef struct
 }Employee;
 
 Employee* employee_new();
-Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr, char *sueldo);
+Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr, char *sueldo,LinkedList* pArrayListEmployee);
 void employee_delete(Employee* this);
 
 int employee_setId(Employee* this,int id);
@@ -28,4 +29,6 @@ int employee_getSueldo(Employee* this,int* sueldo);
 int employee_dameIdNuevo(void);
 int employee_setHorasTrabajadasTxt(Employee* this, char* idTxt);
 int employee_setSueldoTxt(Employee* this, char* idTxt);
+int controller_nextId(LinkedList* pArrayListEmployee);
+int employee_ordenarPorNombre(void* employeeA, void* employeeB);
 #endif // employee_H_INCLUDED

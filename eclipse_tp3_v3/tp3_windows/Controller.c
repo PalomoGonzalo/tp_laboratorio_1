@@ -74,14 +74,14 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
-	int auxId;
+	//int auxId;
 	char idChar[32];
 	char sueldo[32];
 	char horasTrabajadas[32];
 	char nombre[32];
 
-	auxId=controller_nextId(pArrayListEmployee);
-	sprintf(idChar,"%d",auxId);
+	//auxId=controller_nextId(pArrayListEmployee);
+	//sprintf(idChar,"%d",auxId);
 
 	if(pArrayListEmployee!=NULL)
 	{
@@ -89,7 +89,7 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 		getIntString("ingrese su sueldo \n", sueldo);
 		getIntString("ingrese su horas trabajadas", horasTrabajadas);
 
-		ll_add(pArrayListEmployee,employee_newParametros(idChar, nombre, horasTrabajadas, sueldo));
+		ll_add(pArrayListEmployee,employee_newParametros(idChar, nombre, horasTrabajadas, sueldo,pArrayListEmployee));
 
 	}
 
@@ -144,7 +144,7 @@ int controller_menuEditEmployee(Employee* pEmploye,LinkedList* pArrayListEmploye
 {
 	int opcion;
 	char auxNombre[32];
-	int auxHoras;
+			 int auxHoras;
 	int sueldoAux;
 	printf("\nQue desea modificar\n");
 	puts("\n1- NOMBRE\n2- Horas Trabajadas\n3- Sueldo\n4- Salir\n ");
@@ -182,7 +182,49 @@ int controller_menuEditEmployee(Employee* pEmploye,LinkedList* pArrayListEmploye
  */
 int controller_removeEmployee(LinkedList* pArrayListEmployee)
 {
+	Employee *pEmployee=NULL;
+	int id;
+	int existeId;
+	int indiceId;
+	if(pArrayListEmployee!=NULL)
+	{
+		controller_ListEmployee(pArrayListEmployee);
+		utn_getInt(&id, "\nIngrese el id que desea borrar", "error reingrese un id valido \n", 1, 111111, 4);
+		existeId=employee_findById(pArrayListEmployee, id, &indiceId);
+		if(existeId==1)
+		{
+			controller_menuRemoveEmployee(pArrayListEmployee, pEmployee, indiceId);
+		}
+		else
+		{
+			printf("no existe el id \n");
+		}
+
+	}
+
+
     return 1;
+}
+
+int controller_menuRemoveEmployee(LinkedList* pArrayListEmployee,Employee* pEmployee,int indiceId)
+{
+	int opcion;
+	utn_getInt(&opcion, "\nEsta seguro que desea borrar este empleado\n1-Para eliminar\n2-Para cancelar\n", "Error ingrese numeros validos\n", 1, 2, 4);
+	if(opcion==1)
+	{
+
+		if(pArrayListEmployee!=NULL)
+		{
+			pEmployee=ll_get(pArrayListEmployee, indiceId);
+			ll_remove(pArrayListEmployee, indiceId);
+			employee_delete(pEmployee);
+		}
+	}
+	else
+	{
+		printf("la operacion se cancelo \n");
+	}
+	return 1;
 }
 
 /** \brief Listar empleados
@@ -243,6 +285,11 @@ int controller_ListOneEmployee(LinkedList* pArrayListEmployee,int indice)
  */
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
+	if(pArrayListEmployee!=NULL)
+	{
+		ll_sort(pArrayListEmployee, employee_ordenarPorNombre, 0);
+
+	}
     return 1;
 }
 
@@ -291,21 +338,36 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
     return retorno;
 }
 
-int controller_nextId(LinkedList* pArrayListEmployee)
+/*int controller_nextId(LinkedList* pArrayListEmployee)
 {
-	int idRetorno;
-	int i;
-	if(pArrayListEmployee!=NULL)
-	{
-		for(i=0;i<ll_len(pArrayListEmployee);i++)
-		{
+    int retorno = -1;
+    int i;
+    int idAux;
+    int idMax=0;
+    Employee *pEmployee;
+    if(pArrayListEmployee != NULL)
+    {
+        for(i=0;i<ll_len(pArrayListEmployee);i++)
+        {
+            pEmployee = ll_get(pArrayListEmployee, i);
+            if(i == 0)
+            {
+                employee_getId(pEmployee, &idMax);
+            }
+            else
+            {
+                employee_getId(pEmployee, &idAux);
+                if(idAux > idMax)
+                {
+                    idMax = idAux;
+                }
+            }
+        }
+        retorno = idMax+1;
+    }
+    return retorno;
 
-		}
-	}
-	idRetorno=i+1;
-	return idRetorno;
-
-}
+}*/
 int employee_findById(LinkedList* pArrayListEmployee,int id, int* indiceDeId)
 {
 	int retorno=-1;

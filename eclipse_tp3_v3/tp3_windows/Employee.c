@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "funciones.h"
+#include "LinkedList.h"
+
 #define NOMBRE_LEN 32
 Employee* employee_new()
 {
@@ -10,16 +12,19 @@ Employee* employee_new()
 	return pEmployee;
 
 }
-Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr, char *sueldo)
+Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr, char *sueldo,LinkedList* pArrayListEmployee)
 {
 	Employee* auxEmployee;
 	auxEmployee=employee_new();
+	int idAux;
 
 	if(auxEmployee!=NULL && idStr!=NULL && nombreStr !=NULL && horasTrabajadasStr!=NULL && sueldo!=NULL )
 	{
+		idAux=controller_nextId(pArrayListEmployee);
+		sprintf(idStr,"%d",idAux);
 		employee_setIdTxt(auxEmployee, idStr);
 		employee_setNombre(auxEmployee, nombreStr);
-		employee_setHorasTrabajadasTxt(auxEmployee,horasTrabajadasStr);
+		employee_setHorasTrabajadasTxt(	auxEmployee,horasTrabajadasStr);
 		employee_setSueldoTxt(auxEmployee, sueldo);
 	}
 
@@ -221,9 +226,48 @@ int employee_setHorasTrabajadasTxt(Employee* this, char* idTxt)
 
 
 
+int controller_nextId(LinkedList* pArrayListEmployee)
+{
+    int retorno = -1;
+    int i;
+    int idAux;
+    int idMax=0;
+    Employee *pEmployee;
+    if(pArrayListEmployee != NULL)
+    {
+        for(i=0;i<ll_len(pArrayListEmployee);i++)
+        {
+            pEmployee = ll_get(pArrayListEmployee, i);
+            if(i == 0)
+            {
+                employee_getId(pEmployee, &idMax);
+            }
+            else
+            {
+                employee_getId(pEmployee, &idAux);
+                if(idAux > idMax)
+                {
+                    idMax = idAux;
+                }
+            }
+        }
+        retorno = idMax+1;
+    }
+    return retorno;
 
+}
 
-
+int employee_ordenarPorNombre(void* employeeA, void* employeeB)
+{
+    int retorno = 0;
+    Employee* empA=(Employee*) employeeA;
+    Employee* empB=(Employee*) employeeB;
+    if(employeeA !=NULL && employeeB !=NULL)
+    {
+        retorno = stricmp(empB->nombre, empA->nombre);
+    }
+    return retorno;
+}
 
 
 

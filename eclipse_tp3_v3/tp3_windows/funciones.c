@@ -7,6 +7,7 @@
  */
 static int myGets(char pResultado[], int len);
 #include "funciones.h"
+#include "LinkedList.h"
 
 
 static int myGets(char pResultado[], int len)
@@ -575,4 +576,5 @@ float utn_getFloat(float* pResultado, char* mensaje, char* mensajeError, int min
     }
     return retorno;
 }
+
 

@@ -52,13 +52,38 @@ int main()
             	controller_addEmployee(listaEmpleados);
             	break;
             case 4:
-            	controller_editEmployee(listaEmpleados);
+            	if(ll_isEmpty(listaEmpleados)==0)
+            		controller_editEmployee(listaEmpleados);
+            	else
+            		printf("error cargue algo en la lista\n");
+            	break;
+            case 5:
+            	if(ll_isEmpty(listaEmpleados)==0)
+            		controller_removeEmployee(listaEmpleados);
+            	else
+            		printf("error cargue algo a la lista \n");
             	break;
             case 6:
-            	controller_ListEmployee(listaEmpleados);
+            	if(ll_isEmpty(listaEmpleados)==0)
+            	 controller_ListEmployee(listaEmpleados);
+            	else
+            		printf("no hay existe datos para listar \n");
             	break;
+            case 7:
+            	if(ll_isEmpty(listaEmpleados)==0)
+            	 controller_sortEmployee(listaEmpleados);
+            	else
+            		printf("no hay existe datos para ordenar \n");
+            	break;
+            case 8:
+            	if(ll_isEmpty(listaEmpleados)==0)
+
+
             case 9:
-            	controller_saveAsBinary("binario.bin", listaEmpleados);
+            	if(ll_isEmpty(listaEmpleados)==0)
+            		controller_saveAsBinary("binario.bin", listaEmpleados);
+            	else
+            		printf("no hay existe datos guardar \n");
             	break;
         }
     }while(option != 10);

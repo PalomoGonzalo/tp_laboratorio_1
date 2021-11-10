@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-
+#include "LinkedList.h"
 #ifndef FUNCIONES_H_
 #define FUNCIONES_H_
 int myGets(char* cadena, int longitud);
@@ -37,6 +37,7 @@ int getFloat(char *mensaje,float* resultado);
 int esNumericoFlotante(char str[]);
 float utn_getFloat(float* pResultado, char* mensaje, char* mensajeError, int minimo, int maximo, int reintentos);
 char getIntString(char cadena[],char *retorno);
+
 //int getString(char cadena[],char *retorno[]);
 
 #endif /* FUNCIONES_H_ */
