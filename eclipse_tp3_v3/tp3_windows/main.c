@@ -80,13 +80,18 @@ int main()
             	break;
             case 6:
             	if(ll_isEmpty(listaEmpleados)==0)
+            	{
             	 controller_ListEmployee(listaEmpleados);
+            	}
             	else
             		printf("no hay existe datos para listar \n");
             	break;
             case 7:
             	if(ll_isEmpty(listaEmpleados)==0)
+            	{
             	 controller_sortEmployee(listaEmpleados);
+            	 controller_ListEmployee(listaEmpleados);
+            	}
             	else
             		printf("no hay existe datos para ordenar \n");
             	break;
@@ -104,6 +109,7 @@ int main()
             		printf("no hay existe datos guardar \n");
             	break;
             case 10:
+            	ll_deleteLinkedList(listaEmpleados);
             	option=10;
             	break;
 

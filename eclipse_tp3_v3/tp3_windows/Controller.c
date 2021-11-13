@@ -223,7 +223,7 @@ int controller_menuRemoveEmployee(LinkedList* pArrayListEmployee,Employee* pEmpl
 			pEmployee=ll_get(pArrayListEmployee, indiceId);
 			ll_remove(pArrayListEmployee, indiceId);
 			employee_delete(pEmployee);
-			printf("se dio de baja\n")
+			printf("se dio de baja\n");
 		}
 	}
 	else
