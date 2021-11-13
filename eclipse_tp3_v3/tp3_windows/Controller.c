@@ -223,6 +223,7 @@ int controller_menuRemoveEmployee(LinkedList* pArrayListEmployee,Employee* pEmpl
 			pEmployee=ll_get(pArrayListEmployee, indiceId);
 			ll_remove(pArrayListEmployee, indiceId);
 			employee_delete(pEmployee);
+			printf("se dio de baja\n")
 		}
 	}
 	else
@@ -370,36 +371,7 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
     return retorno;
 }
 
-/*int controller_nextId(LinkedList* pArrayListEmployee)
-{
-    int retorno = -1;
-    int i;
-    int idAux;
-    int idMax=0;
-    Employee *pEmployee;
-    if(pArrayListEmployee != NULL)
-    {
-        for(i=0;i<ll_len(pArrayListEmployee);i++)
-        {
-            pEmployee = ll_get(pArrayListEmployee, i);
-            if(i == 0)
-            {
-                employee_getId(pEmployee, &idMax);
-            }
-            else
-            {
-                employee_getId(pEmployee, &idAux);
-                if(idAux > idMax)
-                {
-                    idMax = idAux;
-                }
-            }
-        }
-        retorno = idMax+1;
-    }
-    return retorno;
 
-}*/
 int employee_findById(LinkedList* pArrayListEmployee,int id, int* indiceDeId)
 {
 	int retorno=-1;
